@@ -13,7 +13,7 @@ static const char normfgcolor[]     = "#EBDBB2";
 static const char selbordercolor[]  = "#ED6D79";
 static const char selbgcolor[]      = "#3E4452";
 static const char selfgcolor[]      = "#ED6D79";
-static const unsigned int gappx = 8;            /* gaps between windows */
+static const unsigned int gappx     = 0;        /* gaps between windows */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
@@ -58,9 +58,11 @@ static const int resizehints = 0;    /* 1 means respect size hints in tiled resi
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "þ",      tile },    /* first entry is default */
-	{ "ý",      NULL },    /* no layout function means floating behavior */
-	{ "ÿ",      monocle },
+	{ "þ",        tile        },    /* first entry is default */
+	{ "ý",        NULL        },    /* no layout function means floating behavior */
+	{ "ÿ",        monocle     },
+  { "ü",        bstack      },
+  { "-",        bstackhoriz },
 };
 
 /* key definitions */
@@ -111,7 +113,7 @@ static Key keys[] = {
   { 0,                            0x1008ffb2, spawn,          {.v = mutemic } },
   { 0,                            0x1008ff03, spawn,          {.v = brdown  } },
   { 0,                            0x1008ff02, spawn,          {.v = brup    } },
-	{ MODKEY,                       XK_b,       togglebar,      {0} },
+	{ MODKEY|ShiftMask,             XK_b,       togglebar,      {0} },
 	{ MODKEY,                       XK_j,       focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,       focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,       incnmaster,     {.i = +1 } },
@@ -124,6 +126,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_t,       setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,       setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,       setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_b,       setlayout,      {.v = &layouts[3]} },
 	{ MODKEY,                       XK_space,   setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,   togglefloating, {0} },
 	{ MODKEY,                       XK_0,       view,           {.ui = ~0 } },
