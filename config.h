@@ -4,7 +4,8 @@
 
 /* appearance */
 static const char *fonts[] = {
-	"Misc Tamsynmod:size=10"
+  "Misc Tamsynmod:size=10",
+	"Wuncon Siji:size=10"
 };
 static const char dmenufont[]         = "Misc Tamsynmod:size=10";
 static const char normbgcolor[]       = "#292D3E";
@@ -13,16 +14,16 @@ static const char selbgcolor[]        = "#3E4452";
 static const char selfgcolor[]        = "#ED6D79";
 static const unsigned int tagspacing  = 1;      /* space between tags */
 static const unsigned int tagpadding  = 1;      /* inner padding of tags */
-static const unsigned int taglinepx   = 2;      /* height of tag underline */
-static const unsigned int gappx       = 8;      /* gaps between windows */
+static const unsigned int taglinepx   = 1;      /* height of tag underline */
+static const unsigned int gappx       = 4;      /* gaps between windows */
 static const unsigned int borderpx    = 1;      /* border pixel of windows */
 static const unsigned int snap        = 32;     /* snap pixel */
 static const int showbar              = 1;      /* 0 means no bar */
 static const int topbar               = 1;      /* 0 means bottom bar */
-static const Bool showtitle           = False;  /* True means Show title in status bar */
+static const Bool showtitle           = True;  /* True means Show title in status bar */
 static const char colors[NUMCOLORS][MAXCOLORS][16] = {
     /* border    fg         bg */
-    { "#292D3E", "#EBDBB2", "#292D3E" },        /* 01 - regular */
+    { "#3E4452", "#EBDBB2", "#292D3E" },        /* 01 - regular */
     { "#ED6D79", "#ED6D79", "#3E4452" },        /* 02 - selected */
     { "#3E4452", "#EBDBB2", "#292D3E" },        /* 03 - urgent */
     { "#ED6D79", "#ED6D79", "#292D3E" },        /* 04 - occupied */
@@ -60,11 +61,11 @@ static const int resizehints = 0;    /* 1 means respect size hints in tiled resi
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "þ",        tile        },    /* first entry is default */
-	{ "ý",        NULL        },    /* no layout function means floating behavior */
-	{ "ÿ",        monocle     },
-  { "ü",        bstack      },
-  { "-",        bstackhoriz },
+	{ "",        tile        },    /* first entry is default */
+	{ "",        NULL        },    /* no layout function means floating behavior */
+	{ "",        monocle     },
+  { "",        bstack      },
+  { "",        bstackhoriz },
 };
 
 /* key definitions */
@@ -129,6 +130,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_f,       setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,       setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_b,       setlayout,      {.v = &layouts[3]} },
+	{ MODKEY,                       XK_v,       setlayout,      {.v = &layouts[4]} },
 	{ MODKEY,                       XK_space,   setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,   togglefloating, {0} },
 	{ MODKEY,                       XK_0,       view,           {.ui = ~0 } },
