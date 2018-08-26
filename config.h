@@ -6,20 +6,22 @@
 static const char *fonts[] = {
 	"Misc Tamsynmod:size=10"
 };
-static const char dmenufont[]       = "Misc Tamsynmod:size=10";
-static const char normbordercolor[] = "#292D3E";
-static const char normbgcolor[]     = "#292D3E";
-static const char normfgcolor[]     = "#EBDBB2";
-static const char selbordercolor[]  = "#ED6D79";
-static const char selbgcolor[]      = "#3E4452";
-static const char selfgcolor[]      = "#ED6D79";
-static const unsigned int taglinepx = 2;        /* height of tag underline */
-static const unsigned int gappx     = 3;        /* gaps between windows */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int snap      = 32;       /* snap pixel */
-static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
-static const Bool showtitle         = False;    /* True means Show title in status bar */
+static const char dmenufont[]         = "Misc Tamsynmod:size=10";
+static const char normbordercolor[]   = "#292D3E";
+static const char normbgcolor[]       = "#292D3E";
+static const char normfgcolor[]       = "#EBDBB2";
+static const char selbordercolor[]    = "#ED6D79";
+static const char selbgcolor[]        = "#3E4452";
+static const char selfgcolor[]        = "#ED6D79";
+static const unsigned int tagspacing  = 1;      /* space between tags */
+static const unsigned int tagpadding  = 1;      /* inner padding of tags */
+static const unsigned int taglinepx   = 2;      /* height of tag underline */
+static const unsigned int gappx       = 8;      /* gaps between windows */
+static const unsigned int borderpx    = 1;      /* border pixel of windows */
+static const unsigned int snap        = 32;     /* snap pixel */
+static const int showbar              = 1;      /* 0 means no bar */
+static const int topbar               = 1;      /* 0 means bottom bar */
+static const Bool showtitle           = False;  /* True means Show title in status bar */
 static const char colors[NUMCOLORS][MAXCOLORS][16] = {
     /* border    fg         bg */
     { "#292D3E", "#EBDBB2", "#292D3E" },        /* 01 - regular */

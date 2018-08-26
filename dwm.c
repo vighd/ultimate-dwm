@@ -434,14 +434,14 @@ buttonpress(XEvent *e)
 	if (ev->window == selmon->barwin) {
 		i = x = 0;
 		do
-			x += TEXTW(tags[i]);
+			x += TEXTW(tags[i]) + tagpadding + tagspacing;
 		while (ev->x >= x && ++i < LENGTH(tags));
 		if (i < LENGTH(tags)) {
 			click = ClkTagBar;
 			arg.ui = 1 << i;
 		} else if (ev->x < x + blw)
 			click = ClkLtSymbol;
-		else if (ev->x > selmon->ww - TEXTW(stext))
+		else if (ev->x > selmon->ww - TEXTW(stext) + tagpadding + tagspacing)
 			click = ClkStatusText;
 		else
 			click = ClkWinTitle;
@@ -727,7 +727,7 @@ drawbar(Monitor *m)
     if (occ & 1 << i || urg & 1 << i) {
       XFillRectangle(drw->dpy, drw->drawable, drw->gc, x, bh - taglinepx, w, taglinepx);
     }
-		x += w;
+		x += w + tagspacing;
 	}
 	w = blw = TEXTW(m->ltsymbol);
 	drw_setscheme(drw, &scheme[0]);
