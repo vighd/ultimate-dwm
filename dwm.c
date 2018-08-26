@@ -719,12 +719,12 @@ drawbar(Monitor *m)
 			urg |= c->tags;
 	}
 	x = 0;
-	for (i = 0; i < LENGTH(tags); i++) {
+	for(i = 0; i < LENGTH(tags); i++) {
 		w = TEXTW(tags[i]);
-		drw_setscheme(drw, &scheme[(m->tagset[m->seltags] & 1 << i) ? 1 : (urg & 1 << i ? 2 : 0)]);
+		drw_setscheme(drw, &scheme[(m->tagset[m->seltags] & 1 << i) ? 1 : (urg & 1 << i ? 2 : (occ & 1 << i ? 3 : 0))]);
 		drw_text(drw, x, 0, w, bh, tags[i], 0);
-		drw_rect(drw, x + 1, 1, dx, dx, m == selmon && selmon->sel && selmon->sel->tags & 1 << i,
-		         occ & 1 << i, 0);
+    XSetForeground(drw->dpy, drw->gc, m == selmon && selmon->sel && selmon->sel->tags & 1 << i ? drw->scheme->fg->pix:drw->scheme->border->pix);
+    XFillRectangle(drw->dpy, drw->drawable, drw->gc, x, bh - taglinepx, w, taglinepx);
 		x += w;
 	}
 	w = blw = TEXTW(m->ltsymbol);

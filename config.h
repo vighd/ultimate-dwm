@@ -4,15 +4,16 @@
 
 /* appearance */
 static const char *fonts[] = {
-	"Misc Tamsynmod:size=9"
+	"Misc Tamsynmod:size=10"
 };
-static const char dmenufont[]       = "Misc Tamsynmod:size=9";
+static const char dmenufont[]       = "Misc Tamsynmod:size=10";
 static const char normbordercolor[] = "#292D3E";
 static const char normbgcolor[]     = "#292D3E";
 static const char normfgcolor[]     = "#EBDBB2";
 static const char selbordercolor[]  = "#ED6D79";
 static const char selbgcolor[]      = "#3E4452";
 static const char selfgcolor[]      = "#ED6D79";
+static const unsigned int taglinepx = 2;        /* height of tag underline */
 static const unsigned int gappx     = 0;        /* gaps between windows */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
@@ -22,9 +23,9 @@ static const Bool showtitle         = False;    /* True means Show title in stat
 static const char colors[NUMCOLORS][MAXCOLORS][16] = {
     /* border    fg         bg */
     { "#292D3E", "#EBDBB2", "#292D3E" },        /* 01 - regular */
-    { "#ED6D79", "#ED6D79", "#3E4452" },        /* 02 - selected */
+    { "#3E4452", "#ED6D79", "#3E4452" },        /* 02 - selected */
     { "#3E4452", "#EBDBB2", "#292D3E" },        /* 03 - urgent */
-    { "#3E4452", "#ED6D79", "#292D3E" },        /* 04 - occupied */
+    { "#ED6D79", "#ED6D79", "#292D3E" },        /* 04 - occupied */
     { "#292D3E", "#ED6D79", "#292D3E" },        /* 05 - Wifi */
     { "#292D3E", "#CFF381", "#292D3E" },        /* 06 - Battery */
     { "#292D3E", "#90D4F7", "#292D3E" },        /* 07 - Sensor */
