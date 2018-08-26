@@ -2151,33 +2151,31 @@ zoom(const Arg *arg)
 
 static void
 bstack(Monitor *m) {
-	int w, h, mh, mx, tx, ty, tw;
+	int x, y, h, w, mh;
 	unsigned int i, n;
 	Client *c;
 
-	for (n = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), n++);
-	if (n == 0)
+	for(n = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), n++);
+	if(n == 0)
 		return;
-	if (n > m->nmaster) {
-		mh = m->nmaster ? m->mfact * m->wh : 0;
-		tw = m->ww / (n - m->nmaster);
-		ty = m->wy + mh;
-	} else {
-		mh = m->wh;
-		tw = m->ww;
-		ty = m->wy;
-	}
-	for (i = mx = 0, tx = m->wx, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++) {
-		if (i < m->nmaster) {
-			w = (m->ww - mx) / (MIN(n, m->nmaster) - i);
-			resize(c, m->wx + mx, m->wy, w - (2 * c->bw), mh - (2 * c->bw), 0);
-			mx += WIDTH(c);
-		} else {
-			h = m->wh - mh;
-			resize(c, tx, ty, tw - (2 * c->bw), h - (2 * c->bw), 0);
-			if (tw != m->ww)
-				tx += WIDTH(c);
-		}
+	/* master */
+	c = nexttiled(m->clients);
+	mh = m->mfact * m->wh;
+	resize(c, m->wx, m->wy, m->ww - 2 * c->bw, (n == 1 ? m->wh : mh) - 2 * c->bw, False);
+	if(--n == 0)
+		return;
+	/* tile stack */
+	x = m->wx;
+	y = (m->wy + mh > c->y + c->h) ? c->y + c->h + 2 * c->bw : m->wy + mh;
+	w = m->ww / n;
+	h = (m->wy + mh > c->y + c->h) ? m->wy + m->wh - y : m->wh - mh;
+	if(w < bh)
+		w = m->ww;
+	for(i = 0, c = nexttiled(c->next); c; c = nexttiled(c->next), i++) {
+		resize(c, x, y, /* remainder */ ((i + 1 == n)
+		       ? m->wx + m->ww - x - 2 * c->bw : w - 2 * c->bw), h - 2 * c->bw, False);
+		if(w != m->ww)
+			x = c->x + WIDTH(c);
 	}
 }
 
