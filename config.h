@@ -7,10 +7,8 @@ static const char *fonts[] = {
 	"Misc Tamsynmod:size=10"
 };
 static const char dmenufont[]         = "Misc Tamsynmod:size=10";
-static const char normbordercolor[]   = "#292D3E";
 static const char normbgcolor[]       = "#292D3E";
 static const char normfgcolor[]       = "#EBDBB2";
-static const char selbordercolor[]    = "#ED6D79";
 static const char selbgcolor[]        = "#3E4452";
 static const char selfgcolor[]        = "#ED6D79";
 static const unsigned int tagspacing  = 1;      /* space between tags */
