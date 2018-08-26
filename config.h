@@ -23,7 +23,7 @@ static const Bool showtitle         = False;    /* True means Show title in stat
 static const char colors[NUMCOLORS][MAXCOLORS][16] = {
     /* border    fg         bg */
     { "#292D3E", "#EBDBB2", "#292D3E" },        /* 01 - regular */
-    { "#3E4452", "#ED6D79", "#3E4452" },        /* 02 - selected */
+    { "#ED6D79", "#ED6D79", "#3E4452" },        /* 02 - selected */
     { "#3E4452", "#EBDBB2", "#292D3E" },        /* 03 - urgent */
     { "#ED6D79", "#ED6D79", "#292D3E" },        /* 04 - occupied */
     { "#292D3E", "#ED6D79", "#292D3E" },        /* 05 - Wifi */
