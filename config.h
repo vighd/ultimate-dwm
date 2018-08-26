@@ -14,13 +14,13 @@ static const char selbgcolor[]        = "#3E4452";
 static const char selfgcolor[]        = "#ED6D79";
 static const unsigned int tagspacing  = 1;      /* space between tags */
 static const unsigned int tagpadding  = 1;      /* inner padding of tags */
-static const unsigned int taglinepx   = 1;      /* height of tag underline */
+static const unsigned int taglinepx   = 0;      /* height of tag underline */
 static const unsigned int gappx       = 4;      /* gaps between windows */
 static const unsigned int borderpx    = 1;      /* border pixel of windows */
 static const unsigned int snap        = 32;     /* snap pixel */
 static const int showbar              = 1;      /* 0 means no bar */
 static const int topbar               = 1;      /* 0 means bottom bar */
-static const Bool showtitle           = True;  /* True means Show title in status bar */
+static const Bool showtitle           = False;  /* True means Show title in status bar */
 static const char colors[NUMCOLORS][MAXCOLORS][16] = {
     /* border    fg         bg */
     { "#3E4452", "#EBDBB2", "#292D3E" },        /* 01 - regular */
@@ -77,7 +77,7 @@ static const Layout layouts[] = {
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
-#define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
+#define SHCMD(cmd) { .v = (const char*[]){ "/bin/bash", "-c", cmd, NULL } }
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
@@ -93,10 +93,9 @@ static const char *downvol[]    = { "amixer", "set", "Master", "3%-",     NULL }
 static const char *mutevol[]    = { "amixer", "set", "Master", "toggle", NULL };
 static const char *mutemic[]    = { "amixer", "set", "Capture", "toggle", NULL };
 static const char *brup[]       = { "xbacklight", "-inc", "5", NULL };
-static const char *brdown[]     = { "xbacklight", "-dec", "5", NULL};
+static const char *brdown[]     = { "xbacklight", "-dec", "5", NULL };
 static const char *scrlock[]    = { "sfplock", NULL };
-static const char *screenshot[] = { "shot", NULL };
-static const char *gifshot[]    = { "gifshot", NULL };
+static const char *screenshot[] = { "/bin/sh", "-c","maim -s ~/Pictures/$(date +%s).png", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -112,7 +111,6 @@ static Key keys[] = {
   { 0,                            0x1008ff12, spawn,          {.v = mutevol } },
   { 0,                            0x1008ff2d, spawn,          {.v = scrlock } },
   { 0,                            0xff61,     spawn,          {.v = screenshot } },
-  { ControlMask,                  0xff61,     spawn,          {.v = gifshot } },
   { 0,                            0x1008ffb2, spawn,          {.v = mutemic } },
   { 0,                            0x1008ff03, spawn,          {.v = brdown  } },
   { 0,                            0x1008ff02, spawn,          {.v = brup    } },
