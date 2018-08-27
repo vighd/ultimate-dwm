@@ -14,7 +14,7 @@ static const char selbgcolor[]        = "#3E4452";
 static const char selfgcolor[]        = "#ED6D79";
 static const unsigned int tagspacing  = 1;      /* space between tags */
 static const unsigned int tagpadding  = 1;      /* inner padding of tags */
-static const unsigned int taglinepx   = 0;      /* height of tag underline */
+static const unsigned int taglinepx   = 1;      /* height of tag underline */
 static const unsigned int gappx       = 4;      /* gaps between windows */
 static const unsigned int borderpx    = 1;      /* border pixel of windows */
 static const unsigned int snap        = 32;     /* snap pixel */
@@ -51,7 +51,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "Nitrogen", NULL,       NULL,       0,            1,           -1 },
 };
 
 /* layout(s) */
