@@ -734,7 +734,7 @@ drawbar(Monitor *m)
 	drw_text(drw, x, 0, w, bh, m->ltsymbol, 0);
 	x += w;
 	xx = x;
-	if (m == selmon) { /* status is only drawn on selected monitor */
+	if (m == selmon || 1) { /* status is only drawn on selected monitor */
 		w = drw_get_width(drw, NUMCOLORS, stext);
 		x = m->ww - w;
 		if (x < xx) {
@@ -2023,9 +2023,11 @@ updatetitle(Client *c)
 void
 updatestatus(void)
 {
+  Monitor* m;
 	if (!gettextprop(root, XA_WM_NAME, stext, sizeof(stext)))
 		strcpy(stext, "dwm-"VERSION);
-	drawbar(selmon);
+	for(m = mons; m; m = m->next)
+		drawbar(m);
 }
 
 void
