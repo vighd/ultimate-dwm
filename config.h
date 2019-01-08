@@ -13,7 +13,7 @@ static const char normfgcolor[]       = "#EBDBB2";
 static const char selbgcolor[]        = "#3E4452";
 static const char selfgcolor[]        = "#ED6D79";
 static const unsigned int tagspacing  = 0;      /* space between tags */
-static const unsigned int tagpadding  = 1;      /* inner padding of tags */
+static const unsigned int tagpadding  = 0;      /* inner padding of tags */
 static const unsigned int taglinepx   = 1;      /* height of tag underline */
 static const unsigned int gappx       = 0;      /* gaps between windows */
 static const unsigned int borderpx    = 1;      /* border pixel of windows */
@@ -36,22 +36,24 @@ static const char colors[NUMCOLORS][MAXCOLORS][16] = {
     { "#292D3E", "#FFDC89", "#292D3E" },        /* 0B - Clock */
     { "#292D3E", "#BB96FF", "#292D3E" },        /* 0C - Volume */
     { "#292D3E", "#F1855C", "#292D3E" },        /* 0D - Free Space */
-    { "#292D3E", "#C792EA", "#292D3E" },        /* 0E - Mem free */
+    { "#292D3E", "#C9999E", "#292D3E" },        /* 0E - Mem free */
     { "#292D3E", "#B0D583", "#292D3E" },        /* 0F - Brightness */
     { "#292D3E", "#C6CC7D", "#292D3E" },        /* 10 - Weather */
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5" };
+static const char *tags[] = { "1", "2", "3", "4" };
 
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Nitrogen", NULL,       NULL,       0,            1,           -1 },
+	/* class              instance    title                     tags mask     isfloating   monitor */
+	{ "Gimp",             NULL,       NULL,                     0,            1,           -1 },
+	{ "Nitrogen",         NULL,       NULL,                     0,            1,           -1 },
+	{ "Steam",            NULL,       NULL,                     0,            1,           -1 },
+  { "Feh",              NULL,       NULL,                     0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -87,7 +89,7 @@ static const char *nmcmd[]      = { "networkmanager_dmenu", "-m", dmenumon, "-fn
 static const char *webb[]       = { "chromium", NULL, "chromium" };
 static const char *termcmd[]    = { "termite", NULL };
 static const char *file[]       = { "termite", "-e", "vifm", NULL };
-static const char *img[]        = { "viewnior", "/home/skulltus/Pictures", NULL };
+static const char *img[]        = { "viewnior", "/home/vighd/Pictures", NULL };
 static const char *alsamixer[]  = { "termite", "-e", "alsamixer -c 0", NULL };
 static const char *upvol[]      = { "amixer", "set", "Master", "3%+", NULL };
 static const char *downvol[]    = { "amixer", "set", "Master", "3%-",     NULL };
@@ -138,8 +140,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_m,        setlayout,      {.v = &layouts[2]}},
 	{ MODKEY,                       XK_b,        setlayout,      {.v = &layouts[3]}},
 	{ MODKEY,                       XK_v,        setlayout,      {.v = &layouts[4]}},
-	{ MODKEY,                       XK_space,    setlayout,      {0}               },
-	{ MODKEY|ShiftMask,             XK_space,    togglefloating, {0}               },
 	{ MODKEY,                       XK_0,        view,           {.ui = ~0 }       },
 	{ MODKEY|ShiftMask,             XK_0,        tag,            {.ui = ~0 }       },
 	{ MODKEY,                       XK_comma,    focusmon,       {.i  = -1 }       },
@@ -166,4 +166,3 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0}    },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0}    },
 };
-
