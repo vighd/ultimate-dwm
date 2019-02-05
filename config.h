@@ -4,10 +4,10 @@
 
 /* appearance */
 static const char *fonts[] = {
-  "Misc Tamsynmod:size=10",
+  "canele:size=9",
 	"Wuncon Siji:size=10"
 };
-static const char dmenufont[]         = "Misc Tamsynmod:size=10";
+static const char dmenufont[]         = "canele:size=9";
 static const char normbgcolor[]       = "#292D3E";
 static const char normfgcolor[]       = "#EBDBB2";
 static const char selbgcolor[]        = "#3E4452";
@@ -25,16 +25,16 @@ static const char colors[NUMCOLORS][MAXCOLORS][16] = {
     /* border    fg         bg */
     { "#3E4452", "#EBDBB2", "#292D3E" },        /* 01 - regular */
     { "#ED6D79", "#EBDBB2", "#3E4452" },        /* 02 - selected */
-    { "#292D3E", "#FF132A", "#292D3E" },        /* 03 - urgent */
+    { "#292D3E", "#ED6D79", "#292D3E" },        /* 03 - urgent */
     { "#ED6D79", "#EBDBB2", "#292D3E" },        /* 04 - occupied */
-    { "#292D3E", "#ED6D79", "#292D3E" },        /* 05 - Wifi */
+    { "#292D3E", "#F07178", "#292D3E" },        /* 05 - Wifi */
     { "#292D3E", "#CFF381", "#292D3E" },        /* 06 - Battery */
     { "#292D3E", "#90D4F7", "#292D3E" },        /* 07 - Sensor */
     { "#292D3E", "#E7C7C8", "#292D3E" },        /* 08 - RPM */
     { "#292D3E", "#F5A26F", "#292D3E" },        /* 09 - PROC */
     { "#292D3E", "#EBDBB2", "#292D3E" },        /* 0A - layout colours */
     { "#292D3E", "#FFDC89", "#292D3E" },        /* 0B - Clock */
-    { "#292D3E", "#BB96FF", "#292D3E" },        /* 0C - Volume */
+    { "#292D3E", "#C792EA", "#292D3E" },        /* 0C - Volume */
     { "#292D3E", "#F1855C", "#292D3E" },        /* 0D - Free Space */
     { "#292D3E", "#C9999E", "#292D3E" },        /* 0E - Mem free */
     { "#292D3E", "#B0D583", "#292D3E" },        /* 0F - Brightness */
@@ -63,6 +63,7 @@ static const int resizehints = 0;    /* 1 means respect size hints in tiled resi
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
+  { "",        spiral      },
 	{ "",        tile        },    /* first entry is default */
 	{ "",        NULL        },    /* no layout function means floating behavior */
 	{ "",        monocle     },
@@ -135,11 +136,12 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Return,   zoom,           {0}               },
 	{ MODKEY,                       XK_Tab,      view,           {0}               },
 	{ MODKEY|ShiftMask,             XK_c,        killclient,     {0}               },
-	{ MODKEY,                       XK_t,        setlayout,      {.v = &layouts[0]}},
-	{ MODKEY,                       XK_f,        setlayout,      {.v = &layouts[1]}},
-	{ MODKEY,                       XK_m,        setlayout,      {.v = &layouts[2]}},
-	{ MODKEY,                       XK_b,        setlayout,      {.v = &layouts[3]}},
-	{ MODKEY,                       XK_v,        setlayout,      {.v = &layouts[4]}},
+	{ MODKEY,                       XK_s,        setlayout,      {.v = &layouts[0]}},
+	{ MODKEY,                       XK_t,        setlayout,      {.v = &layouts[1]}},
+	{ MODKEY,                       XK_f,        setlayout,      {.v = &layouts[2]}},
+	{ MODKEY,                       XK_m,        setlayout,      {.v = &layouts[3]}},
+	{ MODKEY,                       XK_b,        setlayout,      {.v = &layouts[4]}},
+	{ MODKEY,                       XK_v,        setlayout,      {.v = &layouts[5]}},
 	{ MODKEY,                       XK_0,        view,           {.ui = ~0 }       },
 	{ MODKEY|ShiftMask,             XK_0,        tag,            {.ui = ~0 }       },
 	{ MODKEY,                       XK_comma,    focusmon,       {.i  = -1 }       },
