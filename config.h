@@ -6,19 +6,21 @@ static const char *fonts[] = {
   "canele:size=9",
   "Waffle:size=12"
 };
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int snap      = 32;       /* snap pixel */
-static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
-static const unsigned int taglinepx = 1;        /* height of tag underline */
-static const unsigned int gappx     = 5;        /* gaps between windows */
-static const Bool showtitle         = False;    /* True means Show title in status bar */
-static const char dmenufont[]       = "canele:size=9";
-static const char normbgcolor[]     = "#292D3E";
-static const char normfgcolor[]     = "#EBDBB2";
-static const char selbgcolor[]      = "#3E4452";
-static const char selfgcolor[]      = "#ED6D79";
-static const char *colors[16][16]      = {
+static const unsigned int borderpx    = 1;        /* border pixel of windows */
+static const unsigned int snap        = 32;       /* snap pixel */
+static const int showbar              = 1;        /* 0 means no bar */
+static const int topbar               = 1;        /* 0 means bottom bar */
+static const unsigned int taglinepx   = 1;        /* height of tag underline */
+static const unsigned int gappx       = 5;        /* gaps between windows */
+static const Bool showtitle           = False;    /* True means Show title in status bar */
+static const char dmenufont[]         = "canele:size=9";
+static const char normbgcolor[]       = "#292D3E";
+static const char normfgcolor[]       = "#EBDBB2";
+static const char selbgcolor[]        = "#3E4452";
+static const char selfgcolor[]        = "#ED6D79";
+static const unsigned int baralpha    = 0xd0;
+static const unsigned int borderalpha = OPAQUE;
+static const char *colors[][3]      = {
 	/*                          fg         bg         border   */
 	[SchemeNorm]        = { "#EBDBB2",   "#292D3E",   "#3E4452"   },
 	[SchemeSel]         = { "#EBDBB2",   "#3E4452",   "#ED6D79"   },
@@ -35,6 +37,24 @@ static const char *colors[16][16]      = {
   [SchemeFreespc]     = { "#F1855C",   "#292D3E",   "#292D3E"   }, /* 0D - Free Space */
   [SchemeMem]         = { "#C9999E",   "#292D3E",   "#292D3E"   }, /* 0E - Mem free */
   [SchemeBrightness]  = { "#B0D583",   "#292D3E",   "#292D3E"   }, /* 0F - Brightness */
+};
+static const unsigned int alphas[][3] = {
+	/*                        fg          bg        border     */
+	[SchemeNorm]        = { OPAQUE,   baralpha,   borderalpha   },
+	[SchemeSel]         = { OPAQUE,   baralpha,   borderalpha   },
+  [SchemeUrgent]      = { OPAQUE,   baralpha,   borderalpha   }, /* 03 - urgent */
+  [SchemeOccupied]    = { OPAQUE,   baralpha,   borderalpha   }, /* 04 - occupied */
+  [SchemeWifi]        = { OPAQUE,   baralpha,   borderalpha   }, /* 05 - Wifi */
+  [SchemeBattery]     = { OPAQUE,   baralpha,   borderalpha   }, /* 06 - Battery */
+  [SchemeSensor]      = { OPAQUE,   baralpha,   borderalpha   }, /* 07 - Sensor */
+  [SchemeRpm]         = { OPAQUE,   baralpha,   borderalpha   }, /* 08 - RPM */
+  [SchemeProc]        = { OPAQUE,   baralpha,   borderalpha   }, /* 09 - PROC */
+  [SchemeLayout]      = { OPAQUE,   baralpha,   borderalpha   }, /* 0A - layout colours */
+  [SchemeClock]       = { OPAQUE,   baralpha,   borderalpha   }, /* 0B - Clock */
+  [SchemeVolume]      = { OPAQUE,   baralpha,   borderalpha   }, /* 0C - Volume */
+  [SchemeFreespc]     = { OPAQUE,   baralpha,   borderalpha   }, /* 0D - Free Space */
+  [SchemeMem]         = { OPAQUE,   baralpha,   borderalpha   }, /* 0E - Mem free */
+  [SchemeBrightness]  = { OPAQUE,   baralpha,   borderalpha   }, /* 0F - Brightness */
 };
 
 /* tagging */
