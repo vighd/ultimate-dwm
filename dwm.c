@@ -534,17 +534,26 @@ clientmessage(XEvent *e)
 {
 	XClientMessageEvent *cme = &e->xclient;
 	Client *c = wintoclient(cme->window);
-	int i;
+	//int i;
 
   if (!c)
     return;
-  if (!ISVISIBLE(c)) {
-    c->mon->seltags ^= 1;
-    c->mon->tagset[c->mon->seltags] = c->tags;
-    for(i=0; !(c->tags & 1 << i); i++);
-    view(&(Arg){.ui = 1 << i});
+  if (cme->message_type == netatom[NetWMState]) {
+    if (cme->data.l[1] == netatom[NetWMFullscreen]
+        || cme->data.l[2] == netatom[NetWMFullscreen])
+      setfullscreen(c, (cme->data.l[0] == 1 /* _NET_WM_STATE_ADD    */
+            || (cme->data.l[0] == 2 /* _NET_WM_STATE_TOGGLE */ && !c->isfullscreen)));
+  } else if (cme->message_type == netatom[NetActiveWindow]) {
+    if (c != selmon->sel && !c->isurgent)
+      seturgent(c, 1);
   }
-  pop(c);
+//  if (!ISVISIBLE(c)) {
+//    c->mon->seltags ^= 1;
+//    c->mon->tagset[c->mon->seltags] = c->tags;
+//    for(i=0; !(c->tags & 1 << i); i++);
+//    view(&(Arg){.ui = 1 << i});
+//  }
+//  pop(c);
 }
 
 void
