@@ -20,7 +20,7 @@ static const char normbgcolor[]       = "#292D3E";
 static const char normfgcolor[]       = "#EBDBB2";
 static const char selbgcolor[]        = "#3E4452";
 static const char selfgcolor[]        = "#ED6D79";
-static const unsigned int baralpha    = 0xCC;     /* 0xCC = 204 so 204/255 = 0.80 in rgba, FF = 1*/
+static const unsigned int baralpha    = 0xE6;     /* 0xCC = 204 so 204/255 = 0.80 in rgba, FF = 1*/
 static const unsigned int borderalpha = OPAQUE;
 static const char *colors[][3]      = {
 	/*                          fg         bg         border   */
@@ -67,13 +67,13 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class          instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",         NULL,       NULL,       0,            1,           -1 },
-	{ "Nitrogen",     NULL,       NULL,       0,            1,           -1 },
-	{ "Steam",        NULL,       NULL,       0,            1,           -1 },
-  { "Feh",          NULL,       NULL,       0,            1,           -1 },
-	{ "Libreoffice",  NULL,       NULL,       0,            1,           -1 },
-	{ "Soffice",      NULL,       NULL,       0,            1,           -1 },
+	/* class          instance    title                   tags mask     isfloating   monitor */
+	{ "Gimp",         NULL,       NULL,                   0,            1,           -1 },
+	{ "Nitrogen",     NULL,       NULL,                   0,            1,           -1 },
+	{ "Steam",        NULL,       NULL,                   0,            1,           -1 },
+  { "Feh",          NULL,       NULL,                   0,            1,           -1 },
+	{ "Libreoffice",  NULL,       NULL,                   0,            1,           -1 },
+  { "Enpass",       NULL,       "Enpass Assistant",     0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -112,10 +112,10 @@ static const char *termcmd[]      = { "termite", NULL };
 static const char *file[]         = { "termite", "-e", "vifm", NULL };
 static const char *img[]          = { "viewnior", "/home/vighd/Pictures", NULL };
 static const char *alsamixer[]    = { "termite", "-e", "alsamixer -c 0", NULL };
-static const char *upvol[]        = { "amixer", "set", "Master", "3%+", NULL };
-static const char *downvol[]      = { "amixer", "set", "Master", "3%-",     NULL };
-static const char *mutevol[]      = { "amixer", "set", "Master", "toggle", NULL };
-static const char *mutemic[]      = { "amixer", "set", "Capture", "toggle", NULL };
+static const char *upvol[]        = { "/bin/sh", "-c", "amixer set Master 3%+; pkill -f sleep", NULL };
+static const char *downvol[]      = { "/bin/sh", "-c", "amixer set Master 3%-; pkill -f sleep", NULL };
+static const char *mutevol[]      = { "/bin/sh", "-c", "amixer set Master toggle; pkill -f sleep", NULL };
+static const char *mutemic[]      = { "/bin/sh", "-c", "amixer set Capture toggle; pkill -f sleep", NULL };
 static const char *brup[]         = { "xbacklight", "-inc", "5", NULL };
 static const char *brdown[]       = { "xbacklight", "-dec", "5", NULL };
 static const char *scrlock[]      = { "sfplock", NULL };
@@ -124,15 +124,17 @@ static const char *extleft[]      = { "/bin/sh", "-c", "xrandr --output HDMI1 --
 static const char *extright[]     = { "/bin/sh", "-c", "xrandr --output HDMI1 --auto --right-of LVDS1 --output LVDS1 --auto && nitrogen --restore", NULL };
 static const char *extabove[]     = { "/bin/sh", "-c", "xrandr --output HDMI1 --auto --above LVDS1 --output LVDS1 --auto", NULL };
 static const char *onedisp[]      = { "/bin/sh", "-c", "xrandr --output HDMI1 --off --output LVDS1 --auto && nitrogen --restore", NULL };
-static const char *togglemusic[]  = { "mpc", "toggle", NULL };
-static const char *stopmusic[]    = { "mpc", "stop", NULL };
-static const char *nextsong[]     = { "mpc", "next", NULL };
-static const char *prevsong[]     = { "mpc", "prev", NULL };
-static const char *ncmpcpp[]      = { "termite", "-e", "ncmpcpp", NULL };
+static const char *togglemusic[]  = { "/bin/sh", "-c", "mpc toggle; pkill -f sleep", NULL };
+static const char *stopmusic[]    = { "/bin/sh", "-c", "mpc stop; pkill -f sleep", NULL };
+static const char *nextsong[]     = { "/bin/sh", "-c", "mpc next; pkill -f sleep", NULL };
+static const char *prevsong[]     = { "/bin/sh", "-c", "mpc prev; pkill -f sleep", NULL };
+static const char *ncmpcpp[]      = { "termite", "-e", "spotifycli", NULL };
 static const char *enpass[]       = { "/opt/enpass/Enpass", "showassistant", NULL };
+static const char *refbar[]       = { "/bin/sh", "-c", "pkill -f sleep", NULL };
 
 static Key keys[] = {
   	/* modifier                     key          function        argument */
+	{ MODKEY,                       XK_Shift_L,  spawn,          {.v = refbar       }   },
 	{ MODKEY,                       XK_p,        spawn,          {.v = dmenucmd     }   },
   { MODKEY|ShiftMask,             XK_n,        spawn,          {.v = nmcmd        }   },
 	{ MODKEY|ShiftMask,             XK_Return,   spawn,          {.v = termcmd      }   },
