@@ -60,6 +60,52 @@ utf8decode(const char *c, long *u, size_t clen)
 	return len;
 }
 
+int
+drw_get_width(Drw *drw, int numcolors, const char *text)
+{
+	int i;
+	Fnt *curfont = drw->fonts;
+	int w = drw_text(drw, 0, 0, 0, 0, 0, text, 0);
+	unsigned int ew;
+
+	drw_font_getexts(curfont, "\x01", 1,  &ew, NULL);
+
+	for (i = 0; i < strlen(text); i++) {
+		if (text[i] > 0 && text[i] <= numcolors) {
+			/* we found a color code
+			 * drw_text counted it as a normal character and added one character's width
+			 * we aren't going to render this character, so we remove one character's width */
+			w -= ew;
+
+		}
+	}
+	return w;
+}
+
+void
+drw_colored_text(Drw *drw, Clr **scheme, int numcolors, int x, int y, unsigned int w, unsigned int h, unsigned int lpad, char *text)
+{
+	if (!drw || !drw->fonts || !drw->scheme)
+		return;
+
+	char *buf = text, *ptr = buf, c = 1;
+	int i;
+
+	while (*ptr) {
+		for (i = 0; *ptr < 0 || *ptr > numcolors; i++, ptr++);
+		if (!*ptr)
+			break;
+		c = *ptr;
+		*ptr = 0;
+		if (i)
+			x = drw_text(drw, x, y, w, h, lpad, buf, 0);
+		*ptr = c;
+		drw_setscheme(drw, scheme[c-1]);
+		buf = ++ptr;
+	}
+	drw_text(drw, x, y, w, h, lpad, buf, 0);
+}
+
 Drw *
 drw_create(Display *dpy, int screen, Window root, unsigned int w, unsigned int h, Visual *visual, unsigned int depth, Colormap cmap)
 {
@@ -377,7 +423,7 @@ drw_text(Drw *drw, int x, int y, unsigned int w, unsigned int h, unsigned int lp
 	if (d)
 		XftDrawDestroy(d);
 
-	return x + (render ? w : 0);
+	return x;
 }
 
 void
