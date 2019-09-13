@@ -3,9 +3,9 @@
 
 /* appearance */
 static const char *fonts[] = {
-  "canele:size=9",
-  "rissole:size=9",
-  "Waffle:size=12"
+  "caneleb:size=9",
+  "rissoleb:size=9",
+  "Waffleb:size=12"
 };
 static const unsigned int borderpx    = 1;        /* border pixel of windows */
 static const unsigned int snap        = 32;       /* snap pixel */
@@ -15,7 +15,7 @@ static const unsigned int taglinepx   = 1;        /* height of tag underline */
 static const unsigned int gappx       = 0;        /* gaps between windows */
 static const Bool showtitle           = False;    /* True means Show title in status bar */
 static const Bool gaponeclient        = False;    /* Enable gap with one window only */
-static const char dmenufont[]         = "canele:size=9";
+static const char dmenufont[]         = "caneleb:size=9";
 static const char normbgcolor[]       = "#292D3E";
 static const char normfgcolor[]       = "#EBDBB2";
 static const char selbgcolor[]        = "#3E4452";
