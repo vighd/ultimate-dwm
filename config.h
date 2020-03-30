@@ -20,8 +20,6 @@ static const char normbgcolor[]       = "#292D3E";
 static const char normfgcolor[]       = "#D0D0D0";
 static const char selbgcolor[]        = "#82AAFF";
 static const char selfgcolor[]        = "#292D3E";
-static const unsigned int baralpha    = 0xE6;     /* 0xCC = 204 so 204/255 = 0.80 in rgba, FF = 1*/
-static const unsigned int borderalpha = OPAQUE;
 static const char *colors[][3]      = {
   /*                          fg         bg         border   */
   [SchemeNorm]        = { "#D0D0D0",   "#292D3E",   "#3E4452"   }, /* 01 - normal */
@@ -41,25 +39,6 @@ static const char *colors[][3]      = {
   [SchemeMem]         = { "#C3E88d",   "#292D3E",   "#292D3E"   }, /* 0F - Mem free */
   [SchemeBrightness]  = { "#9B859D",   "#292D3E",   "#292D3E"   }, /* 10 - Brightness */
   [SchemeTagLine]     = { "#292D3E",   "#292D3E",   "#C792EA"   }, /* 11 - tagline */
-};
-static const unsigned int alphas[][3] = {
-  /*                        fg          bg        border     */
-  [SchemeNorm]        = { OPAQUE,   baralpha,   borderalpha   },
-  [SchemeSel]         = { OPAQUE,   baralpha,   borderalpha   },
-  [SchemeTitle]       = { OPAQUE,   baralpha,   borderalpha   },
-  [SchemeUrgent]      = { OPAQUE,   baralpha,   borderalpha   },
-  [SchemeOccupied]    = { OPAQUE,   baralpha,   borderalpha   },
-  [SchemeWifi]        = { OPAQUE,   baralpha,   borderalpha   },
-  [SchemeBattery]     = { OPAQUE,   baralpha,   borderalpha   },
-  [SchemeSensor]      = { OPAQUE,   baralpha,   borderalpha   },
-  [SchemeRpm]         = { OPAQUE,   baralpha,   borderalpha   },
-  [SchemeProc]        = { OPAQUE,   baralpha,   borderalpha   },
-  [SchemeLayout]      = { OPAQUE,   baralpha,   borderalpha   },
-  [SchemeClock]       = { OPAQUE,   baralpha,   borderalpha   },
-  [SchemeVolume]      = { OPAQUE,   baralpha,   borderalpha   },
-  [SchemeFreespc]     = { OPAQUE,   baralpha,   borderalpha   },
-  [SchemeMem]         = { OPAQUE,   baralpha,   borderalpha   },
-  [SchemeBrightness]  = { OPAQUE,   baralpha,   borderalpha   },
 };
 
 /* tagging */
