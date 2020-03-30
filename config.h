@@ -13,50 +13,53 @@ static const int showbar              = 1;        /* 0 means no bar */
 static const int topbar               = 1;        /* 0 means bottom bar */
 static const unsigned int taglinepx   = 1;        /* height of tag underline */
 static const unsigned int gappx       = 0;        /* gaps between windows */
-static const Bool showtitle           = False;    /* True means Show title in status bar */
+static const Bool showtitle           = True;    /* True means Show title in status bar */
 static const Bool gaponeclient        = False;    /* Enable gap with one window only */
 static const char dmenufont[]         = "caneleb:size=9";
 static const char normbgcolor[]       = "#292D3E";
-static const char normfgcolor[]       = "#EBDBB2";
-static const char selbgcolor[]        = "#3E4452";
-static const char selfgcolor[]        = "#ED6D79";
+static const char normfgcolor[]       = "#D0D0D0";
+static const char selbgcolor[]        = "#82AAFF";
+static const char selfgcolor[]        = "#292D3E";
 static const unsigned int baralpha    = 0xE6;     /* 0xCC = 204 so 204/255 = 0.80 in rgba, FF = 1*/
 static const unsigned int borderalpha = OPAQUE;
 static const char *colors[][3]      = {
   /*                          fg         bg         border   */
-  [SchemeNorm]        = { "#EBDBB2",   "#292D3E",   "#3E4452"   },
-  [SchemeSel]         = { "#EBDBB2",   "#3E4452",   "#ED6D79"   },
-  [SchemeUrgent]      = { "#ED6D79",   "#292D3E",   "#292D3E"   }, /* 03 - urgent */
-  [SchemeOccupied]    = { "#EBDBB2",   "#292D3E",   "#ED6D79"   }, /* 04 - occupied */
-  [SchemeWifi]        = { "#F07178",   "#292D3E",   "#292D3E"   }, /* 05 - Wifi */
-  [SchemeBattery]     = { "#CFF381",   "#292D3E",   "#292D3E"   }, /* 06 - Battery */
-  [SchemeSensor]      = { "#90D4F7",   "#292D3E",   "#292D3E"   }, /* 07 - Sensor */
-  [SchemeRpm]         = { "#E7C7C8",   "#292D3E",   "#292D3E"   }, /* 08 - RPM */
-  [SchemeProc]        = { "#F5A26F",   "#292D3E",   "#292D3E"   }, /* 09 - PROC */
-  [SchemeLayout]      = { "#ED6D79",   "#292D3E",   "#292D3E"   }, /* 0A - layout colours */
-  [SchemeClock]       = { "#FFDC89",   "#292D3E",   "#292D3E"   }, /* 0B - Clock */
-  [SchemeVolume]      = { "#C792EA",   "#292D3E",   "#292D3E"   }, /* 0C - Volume */
-  [SchemeFreespc]     = { "#F1855C",   "#292D3E",   "#292D3E"   }, /* 0D - Free Space */
-  [SchemeMem]         = { "#B0D583",   "#292D3E",   "#292D3E"   }, /* 0E - Mem free */
-  [SchemeBrightness]  = { "#C9999E",   "#292D3E",   "#292D3E"   }, /* 0F - Brightness */
+  [SchemeNorm]        = { "#D0D0D0",   "#292D3E",   "#3E4452"   }, /* 01 - normal */
+  [SchemeSel]         = { "#D0D0D0",   "#32424A",   "#425B67"   }, /* 02 - selected */
+  [SchemeTitle]       = { "#C792EA",   "#292D3E",   "#292D3E"   }, /* 03 - active title */
+  [SchemeUrgent]      = { "#F07178",   "#292D3E",   "#292D3E"   }, /* 04 - urgent */
+  [SchemeOccupied]    = { "#D0D0D0",   "#292D3E",   "#425B67"   }, /* 05 - occupied */
+  [SchemeWifi]        = { "#F07178",   "#292D3E",   "#292D3E"   }, /* 06 - Wifi */
+  [SchemeBattery]     = { "#DDFFA7",   "#292D3E",   "#292D3E"   }, /* 07 - Battery */
+  [SchemeSensor]      = { "#89DDFF",   "#292D3E",   "#292D3E"   }, /* 08 - Sensor */
+  [SchemeRpm]         = { "#D0D0D0",   "#292D3E",   "#292D3E"   }, /* 09 - RPM */
+  [SchemeProc]        = { "#FFCB6B",   "#292D3E",   "#292D3E"   }, /* 0A - PROC */
+  [SchemeLayout]      = { "#F07178",   "#292D3E",   "#292D3E"   }, /* 0B - layout colours */
+  [SchemeClock]       = { "#FFDC89",   "#292D3E",   "#292D3E"   }, /* 0C - Clock */
+  [SchemeVolume]      = { "#C792EA",   "#292D3E",   "#292D3E"   }, /* 0D - Volume */
+  [SchemeFreespc]     = { "#F78C6C",   "#292D3E",   "#292D3E"   }, /* 0E - Free Space */
+  [SchemeMem]         = { "#C3E88d",   "#292D3E",   "#292D3E"   }, /* 0F - Mem free */
+  [SchemeBrightness]  = { "#9B859D",   "#292D3E",   "#292D3E"   }, /* 10 - Brightness */
+  [SchemeTagLine]     = { "#292D3E",   "#292D3E",   "#C792EA"   }, /* 11 - tagline */
 };
 static const unsigned int alphas[][3] = {
   /*                        fg          bg        border     */
   [SchemeNorm]        = { OPAQUE,   baralpha,   borderalpha   },
   [SchemeSel]         = { OPAQUE,   baralpha,   borderalpha   },
-  [SchemeUrgent]      = { OPAQUE,   baralpha,   borderalpha   }, /* 03 - urgent */
-  [SchemeOccupied]    = { OPAQUE,   baralpha,   borderalpha   }, /* 04 - occupied */
-  [SchemeWifi]        = { OPAQUE,   baralpha,   borderalpha   }, /* 05 - Wifi */
-  [SchemeBattery]     = { OPAQUE,   baralpha,   borderalpha   }, /* 06 - Battery */
-  [SchemeSensor]      = { OPAQUE,   baralpha,   borderalpha   }, /* 07 - Sensor */
-  [SchemeRpm]         = { OPAQUE,   baralpha,   borderalpha   }, /* 08 - RPM */
-  [SchemeProc]        = { OPAQUE,   baralpha,   borderalpha   }, /* 09 - PROC */
-  [SchemeLayout]      = { OPAQUE,   baralpha,   borderalpha   }, /* 0A - layout colours */
-  [SchemeClock]       = { OPAQUE,   baralpha,   borderalpha   }, /* 0B - Clock */
-  [SchemeVolume]      = { OPAQUE,   baralpha,   borderalpha   }, /* 0C - Volume */
-  [SchemeFreespc]     = { OPAQUE,   baralpha,   borderalpha   }, /* 0D - Free Space */
-  [SchemeMem]         = { OPAQUE,   baralpha,   borderalpha   }, /* 0E - Mem free */
-  [SchemeBrightness]  = { OPAQUE,   baralpha,   borderalpha   }, /* 0F - Brightness */
+  [SchemeTitle]       = { OPAQUE,   baralpha,   borderalpha   },
+  [SchemeUrgent]      = { OPAQUE,   baralpha,   borderalpha   },
+  [SchemeOccupied]    = { OPAQUE,   baralpha,   borderalpha   },
+  [SchemeWifi]        = { OPAQUE,   baralpha,   borderalpha   },
+  [SchemeBattery]     = { OPAQUE,   baralpha,   borderalpha   },
+  [SchemeSensor]      = { OPAQUE,   baralpha,   borderalpha   },
+  [SchemeRpm]         = { OPAQUE,   baralpha,   borderalpha   },
+  [SchemeProc]        = { OPAQUE,   baralpha,   borderalpha   },
+  [SchemeLayout]      = { OPAQUE,   baralpha,   borderalpha   },
+  [SchemeClock]       = { OPAQUE,   baralpha,   borderalpha   },
+  [SchemeVolume]      = { OPAQUE,   baralpha,   borderalpha   },
+  [SchemeFreespc]     = { OPAQUE,   baralpha,   borderalpha   },
+  [SchemeMem]         = { OPAQUE,   baralpha,   borderalpha   },
+  [SchemeBrightness]  = { OPAQUE,   baralpha,   borderalpha   },
 };
 
 /* tagging */
@@ -67,14 +70,15 @@ static const Rule rules[] = {
    *	WM_CLASS(STRING) = instance, class
    *	WM_NAME(STRING) = title
    */
-  /* class          instance    title                   tags mask     isfloating   monitor */
-  { "Gimp",         NULL,       NULL,                   0,            1,           -1 },
-  { "Nitrogen",     NULL,       NULL,                   0,            1,           -1 },
-  { "Steam",        NULL,       NULL,                   0,            1,           -1 },
-  { "Feh",          NULL,       NULL,                   0,            1,           -1 },
-  { "Libreoffice",  NULL,       NULL,                   0,            1,           -1 },
-  { "Enpass",       NULL,       "Enpass Assistant",     0,            1,           -1 },
-  { "mpv",          NULL,       NULL,                   0,            1,           -1 },
+  /* class                        instance                      title                           tags mask     isfloating   monitor */
+  { "Gimp",                       NULL,                         NULL,                           0,            1,           -1 },
+  { "Nitrogen",                   NULL,                         NULL,                           0,            1,           -1 },
+  { "Steam",                      NULL,                         NULL,                           0,            1,           -1 },
+  { "Feh",                        NULL,                         NULL,                           0,            1,           -1 },
+  { "Libreoffice",                NULL,                         NULL,                           0,            1,           -1 },
+  { "Enpass",                     NULL,                         "Enpass Assistant",             0,            1,           -1 },
+  { "mpv",                        NULL,                         NULL,                           0,            1,           -1 },
+  { "Microsoft Teams - Preview",  "microsoft teams - preview",  "Microsoft Teams Notification", 0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -121,10 +125,10 @@ static const char *brup[]         = { "xbacklight", "-inc", "5", NULL };
 static const char *brdown[]       = { "xbacklight", "-dec", "5", NULL };
 static const char *scrlock[]      = { "sfplock", NULL };
 static const char *screenshot[]   = { "/bin/sh", "-c", "maim -s ~/Pictures/$(date +%s).png", NULL };
-static const char *extleft[]      = { "/bin/sh", "-c", "xrandr --output HDMI1 --auto --left-of LVDS1 --output LVDS1 --auto && nitrogen --restore", NULL };
-static const char *extright[]     = { "/bin/sh", "-c", "xrandr --output HDMI1 --auto --right-of LVDS1 --output LVDS1 --auto && nitrogen --restore", NULL };
-static const char *extabove[]     = { "/bin/sh", "-c", "xrandr --output HDMI1 --auto --above LVDS1 --output LVDS1 --auto", NULL };
-static const char *onedisp[]      = { "/bin/sh", "-c", "xrandr --output HDMI1 --off --output LVDS1 --auto && nitrogen --restore", NULL };
+static const char *extleft[]      = { "/bin/sh", "-c", "xrandr --output $(xrandr --listmonitors | grep -v '\\*' | grep -Po '[A-Z]+\\d' | head -1) --auto --left-of LVDS1 --output LVDS1 --auto && nitrogen --restore", NULL };
+static const char *extright[]     = { "/bin/sh", "-c", "xrandr --output $(xrandr --listmonitors | grep -v '\\*' | grep -Po '[A-Z]+\\d' | head -1) --auto --right-of LVDS1 --output LVDS1 --auto && nitrogen --restore", NULL };
+static const char *extabove[]     = { "/bin/sh", "-c", "xrandr --output $(xrandr --listmonitors | grep -v '\\*' | grep -Po '[A-Z]+\\d' | head -1) --auto --above LVDS1 --output LVDS1 --auto", NULL };
+static const char *onedisp[]      = { "/bin/sh", "-c", "xrandr --output $(xrandr --listmonitors | grep -v '\\*' | grep -Po '[A-Z]+\\d' | head -1) --off --output LVDS1 --auto && nitrogen --restore", NULL };
 static const char *togglemusic[]  = { "/bin/sh", "-c", "mpc toggle; pkill -f sleep", NULL };
 static const char *stopmusic[]    = { "/bin/sh", "-c", "mpc stop; pkill -f sleep", NULL };
 static const char *nextsong[]     = { "/bin/sh", "-c", "mpc next; pkill -f sleep", NULL };
