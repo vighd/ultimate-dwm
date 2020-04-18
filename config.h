@@ -5,7 +5,7 @@
 static const char *fonts[] = {
   "caneleb:size=9",
   "rissoleb:size=9",
-  "Waffleb:size=12"
+  "Waffle:size=12"
 };
 static const unsigned int borderpx    = 1;        /* border pixel of windows */
 static const unsigned int snap        = 32;       /* snap pixel */
@@ -39,6 +39,7 @@ static const char *colors[][3]      = {
   [SchemeMem]         = { "#C3E88d",   "#292D3E",   "#292D3E"   }, /* 0F - Mem free */
   [SchemeBrightness]  = { "#9B859D",   "#292D3E",   "#292D3E"   }, /* 10 - Brightness */
   [SchemeTagLine]     = { "#292D3E",   "#292D3E",   "#C792EA"   }, /* 11 - tagline */
+  [SchemeKbdLang]     = { "#82AAFF",   "#292D3E",   "#292D3E"   }, /* 12 - kbd lang color */
 };
 
 /* tagging */
@@ -114,6 +115,7 @@ static const char *prevsong[]     = { "/bin/sh", "-c", "mpc prev; pkill -f sleep
 static const char *ncmpcpp[]      = { "termite", "-e", "spotifycli", NULL };
 static const char *enpass[]       = { "/opt/enpass/Enpass", "showassistant", NULL };
 static const char *refbar[]       = { "/bin/sh", "-c", "pkill -f sleep", NULL };
+static const char *chlang[]       = { "/bin/sh", "-c", "(setxkbmap -query | grep -q 'layout:     hu' && setxkbmap en_US || setxkbmap hu); pkill -f sleep", NULL };
 
 static Key keys[] = {
   /* modifier                  key          function      argument */
@@ -144,6 +146,7 @@ static Key keys[] = {
   { WINDOWSKEY,                XK_Right,    spawn,        {.v = extright     }   },
   { WINDOWSKEY,                XK_Up,       spawn,        {.v = extabove     }   },
   { WINDOWSKEY,                XK_Down,     spawn,        {.v = onedisp      }   },
+  { WINDOWSKEY,                XK_l,        spawn,        {.v = chlang       }   },
   { MODKEY|ShiftMask,          XK_t,        togglebar,    {0                 }   },
   { MODKEY,                    XK_j,        focusstack,   {.i = +1           }   },
   { MODKEY,                    XK_k,        focusstack,   {.i = -1           }   },
