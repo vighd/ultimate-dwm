@@ -4,8 +4,7 @@
 /* appearance */
 static const char *fonts[] = {
   "caneleb:size=9",
-  "rissoleb:size=9",
-  "Waffle:size=12"
+  "Waffle:size=12",
 };
 static const unsigned int borderpx    = 1;        /* border pixel of windows */
 static const unsigned int snap        = 32;       /* snap pixel */
@@ -23,10 +22,10 @@ static const char selfgcolor[]        = "#292D3E";
 static const char *colors[][3]      = {
   /*                          fg         bg         border   */
   [SchemeNorm]        = { "#D0D0D0",   "#292D3E",   "#3E4452"   }, /* 01 - normal */
-  [SchemeSel]         = { "#D0D0D0",   "#32424A",   "#425B67"   }, /* 02 - selected */
+  [SchemeSel]         = { "#D0D0D0",   "#32424A",   "#425B80"   }, /* 02 - selected */
   [SchemeTitle]       = { "#C792EA",   "#292D3E",   "#292D3E"   }, /* 03 - active title */
   [SchemeUrgent]      = { "#F07178",   "#292D3E",   "#292D3E"   }, /* 04 - urgent */
-  [SchemeOccupied]    = { "#D0D0D0",   "#292D3E",   "#425B67"   }, /* 05 - occupied */
+  [SchemeOccupied]    = { "#D0D0D0",   "#292D3E",   "#425B80"   }, /* 05 - occupied */
   [SchemeWifi]        = { "#F07178",   "#292D3E",   "#292D3E"   }, /* 06 - Wifi */
   [SchemeBattery]     = { "#DDFFA7",   "#292D3E",   "#292D3E"   }, /* 07 - Battery */
   [SchemeSensor]      = { "#89DDFF",   "#292D3E",   "#292D3E"   }, /* 08 - Sensor */
@@ -92,7 +91,7 @@ static const char *dmenucmd[]     = { "dmenu_run",            "-m", dmenumon, "-
 static const char *nmcmd[]        = { "networkmanager_dmenu", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *btmenu[]       = { "btmenu", "::", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *calccmd[]      = { "=", "--", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
-static const char *webb[]         = { "qutebrowser", NULL };
+static const char *webb[]         = { "chromium", NULL };
 static const char *termcmd[]      = { "termite", NULL };
 static const char *file[]         = { "termite", "-e", "vifmrun", NULL };
 static const char *alsamixer[]    = { "termite", "-e", "alsamixer -c 0", NULL };
@@ -118,56 +117,57 @@ static const char *refbar[]       = { "/bin/sh", "-c", "pkill -f sleep", NULL };
 static const char *chlang[]       = { "/bin/sh", "-c", "(setxkbmap -query | grep -q 'layout:     hu' && setxkbmap en_US || setxkbmap hu); pkill -f sleep", NULL };
 
 static Key keys[] = {
-  /* modifier                  key          function      argument */
-  { MODKEY,                    XK_Shift_L,  spawn,        {.v = refbar       }   },
-  { MODKEY,                    XK_p,        spawn,        {.v = dmenucmd     }   },
-  { MODKEY|ShiftMask,          XK_n,        spawn,        {.v = nmcmd        }   },
-  { MODKEY|ShiftMask,          XK_Return,   spawn,        {.v = termcmd      }   },
-  { MODKEY|ShiftMask,          XK_w,        spawn,        {.v = webb         }   },
-  { MODKEY|ShiftMask,          XK_f,        spawn,        {.v = file         }   },
-  { MODKEY|ShiftMask,          XK_s,        spawn,        {.v = alsamixer    }   },
-  { MODKEY|ShiftMask,          XK_e,        spawn,        {.v = enpass       }   },
-  { MODKEY|ShiftMask,          XK_7,        spawn,        {.v = calccmd      }   },
-  { MODKEY|ShiftMask,          XK_b,        spawn,        {.v = btmenu       }   },
-  { 0,                         0x1008ff13,  spawn,        {.v = upvol        }   },
-  { 0,                         0x1008ff11,  spawn,        {.v = downvol      }   },
-  { 0,                         0x1008ff12,  spawn,        {.v = mutevol      }   },
-  { 0,                         0x1008ff2d,  spawn,        {.v = scrlock      }   },
-  { 0,                         0xff61,      spawn,        {.v = screenshot   }   },
-  { 0,                         0x1008ffb2,  spawn,        {.v = mutemic      }   },
-  { 0,                         0x1008ff03,  spawn,        {.v = brdown       }   },
-  { 0,                         0x1008ff02,  spawn,        {.v = brup         }   },
-  { 0,                         0x1008ff81,  spawn,        {.v = ncmpcpp      }   },
-  { 0,                         0x1008ff14,  spawn,        {.v = togglemusic  }   },
-  { 0,                         0x1008ff15,  spawn,        {.v = stopmusic    }   },
-  { 0,                         0x1008ff17,  spawn,        {.v = nextsong     }   },
-  { 0,                         0x1008ff16,  spawn,        {.v = prevsong     }   },
-  { WINDOWSKEY,                XK_Left,     spawn,        {.v = extleft      }   },
-  { WINDOWSKEY,                XK_Right,    spawn,        {.v = extright     }   },
-  { WINDOWSKEY,                XK_Up,       spawn,        {.v = extabove     }   },
-  { WINDOWSKEY,                XK_Down,     spawn,        {.v = onedisp      }   },
-  { WINDOWSKEY,                XK_l,        spawn,        {.v = chlang       }   },
-  { MODKEY|ShiftMask,          XK_t,        togglebar,    {0                 }   },
-  { MODKEY,                    XK_j,        focusstack,   {.i = +1           }   },
-  { MODKEY,                    XK_k,        focusstack,   {.i = -1           }   },
-  { MODKEY,                    XK_i,        incnmaster,   {.i = +1           }   },
-  { MODKEY,                    XK_d,        incnmaster,   {.i = -1           }   },
-  { MODKEY,                    XK_h,        setmfact,     {.f = -0.05        }   },
-  { MODKEY,                    XK_l,        setmfact,     {.f = +0.05        }   },
-  { MODKEY,                    XK_Return,   zoom,         {0                 }   },
-  { MODKEY,                    XK_Tab,      view,         {0                 }   },
-  { MODKEY|ShiftMask,          XK_c,        killclient,   {0                 }   },
-  { MODKEY,                    XK_s,        setlayout,    {.v = &layouts[0]  }   },
-  { MODKEY,                    XK_t,        setlayout,    {.v = &layouts[1]  }   },
-  { MODKEY,                    XK_f,        setlayout,    {.v = &layouts[2]  }   },
-  { MODKEY,                    XK_m,        setlayout,    {.v = &layouts[3]  }   },
-  { MODKEY,                    XK_0,        view,         {.ui = ~0          }   },
-  { MODKEY|ShiftMask,          XK_0,        tag,          {.ui = ~0          }   },
-  { MODKEY,                    XK_comma,    focusmon,     {.i  = -1          }   },
-  { MODKEY,                    XK_period,   focusmon,     {.i  = +1          }   },
-  { MODKEY|ShiftMask,          XK_comma,    tagmon,       {.i  = -1          }   },
-  { MODKEY|ShiftMask,          XK_period,   tagmon,       {.i  = +1          }   },
-  { MODKEY|ShiftMask,          XK_q,        quit,         {0}                    },
+  /* modifier                     key          function      argument */
+  { MODKEY,                       XK_Shift_L,  spawn,        {.v = refbar       }   },
+  { MODKEY,                       XK_p,        spawn,        {.v = dmenucmd     }   },
+  { MODKEY|ShiftMask,             XK_n,        spawn,        {.v = nmcmd        }   },
+  { MODKEY|ShiftMask,             XK_Return,   spawn,        {.v = termcmd      }   },
+  { MODKEY|ShiftMask,             XK_w,        spawn,        {.v = webb         }   },
+  { MODKEY|ShiftMask,             XK_f,        spawn,        {.v = file         }   },
+  { MODKEY|ShiftMask,             XK_s,        spawn,        {.v = alsamixer    }   },
+  { MODKEY|ShiftMask,             XK_e,        spawn,        {.v = enpass       }   },
+  { MODKEY|ShiftMask,             XK_7,        spawn,        {.v = calccmd      }   },
+  { MODKEY|ShiftMask,             XK_b,        spawn,        {.v = btmenu       }   },
+  { 0,                            0x1008ff13,  spawn,        {.v = upvol        }   },
+  { 0,                            0x1008ff11,  spawn,        {.v = downvol      }   },
+  { 0,                            0x1008ff12,  spawn,        {.v = mutevol      }   },
+  { 0,                            0x1008ff2d,  spawn,        {.v = scrlock      }   },
+  { 0,                            0xff61,      spawn,        {.v = screenshot   }   },
+  { 0,                            0x1008ffb2,  spawn,        {.v = mutemic      }   },
+  { 0,                            0x1008ff03,  spawn,        {.v = brdown       }   },
+  { 0,                            0x1008ff02,  spawn,        {.v = brup         }   },
+  { 0,                            0x1008ff81,  spawn,        {.v = ncmpcpp      }   },
+  { 0,                            0x1008ff14,  spawn,        {.v = togglemusic  }   },
+  { 0,                            0x1008ff15,  spawn,        {.v = stopmusic    }   },
+  { 0,                            0x1008ff17,  spawn,        {.v = nextsong     }   },
+  { 0,                            0x1008ff16,  spawn,        {.v = prevsong     }   },
+  { WINDOWSKEY,                   XK_Left,     spawn,        {.v = extleft      }   },
+  { WINDOWSKEY,                   XK_Right,    spawn,        {.v = extright     }   },
+  { WINDOWSKEY,                   XK_Up,       spawn,        {.v = extabove     }   },
+  { WINDOWSKEY,                   XK_Down,     spawn,        {.v = onedisp      }   },
+  { WINDOWSKEY,                   XK_l,        spawn,        {.v = chlang       }   },
+  { MODKEY|ShiftMask,             XK_t,        togglebar,    {0                 }   },
+  { MODKEY,                       XK_j,        focusstack,   {.i = +1           }   },
+  { MODKEY,                       XK_k,        focusstack,   {.i = -1           }   },
+  { MODKEY,                       XK_i,        incnmaster,   {.i = +1           }   },
+  { MODKEY,                       XK_d,        incnmaster,   {.i = -1           }   },
+  { MODKEY,                       XK_h,        setmfact,     {.f = -0.05        }   },
+  { MODKEY,                       XK_l,        setmfact,     {.f = +0.05        }   },
+  { MODKEY,                       XK_Return,   zoom,         {0                 }   },
+  { MODKEY,                       XK_Tab,      view,         {0                 }   },
+  { MODKEY|ShiftMask,             XK_c,        killclient,   {0                 }   },
+  { MODKEY,                       XK_s,        setlayout,    {.v = &layouts[0]  }   },
+  { MODKEY,                       XK_t,        setlayout,    {.v = &layouts[1]  }   },
+  { MODKEY,                       XK_f,        setlayout,    {.v = &layouts[2]  }   },
+  { MODKEY,                       XK_m,        setlayout,    {.v = &layouts[3]  }   },
+  { MODKEY,                       XK_0,        view,         {.ui = ~0          }   },
+  { MODKEY|ShiftMask,             XK_0,        tag,          {.ui = ~0          }   },
+  { MODKEY,                       XK_comma,    focusmon,     {.i  = -1          }   },
+  { MODKEY,                       XK_period,   focusmon,     {.i  = +1          }   },
+  { MODKEY|ShiftMask,             XK_comma,    tagmon,       {.i  = -1          }   },
+  { MODKEY|ShiftMask,             XK_period,   tagmon,       {.i  = +1          }   },
+  { MODKEY|ShiftMask,             XK_q,        quit,         {0                 }   },
+  { MODKEY|ControlMask|ShiftMask, XK_q,        quit,         {1                 }   },
   TAGKEYS(                     XK_1,                                             0)
   TAGKEYS(                     XK_2,                                             1)
   TAGKEYS(                     XK_3,                                             2)
