@@ -49,15 +49,16 @@ static const Rule rules[] = {
    *	WM_CLASS(STRING) = instance, class
    *	WM_NAME(STRING) = title
    */
-  /* class                        instance                      title                           tags mask     isfloating   monitor */
-  { "Gimp",                       NULL,                         NULL,                           0,            1,           -1 },
-  { "Nitrogen",                   NULL,                         NULL,                           0,            1,           -1 },
-  { "Steam",                      NULL,                         NULL,                           0,            1,           -1 },
-  { "Feh",                        NULL,                         NULL,                           0,            1,           -1 },
-  { "Libreoffice",                NULL,                         NULL,                           0,            1,           -1 },
-  { "Enpass",                     NULL,                         "Enpass Assistant",             0,            1,           -1 },
-  { "mpv",                        NULL,                         NULL,                           0,            1,           -1 },
-  { "Microsoft Teams - Preview",  "microsoft teams - preview",  "Microsoft Teams Notification", 0,            1,           -1 },
+  /* class                        instance                      title                           tags mask     iscentered    isfloating   monitor */
+  { "Gimp",                       NULL,                         NULL,                           0,            0,            1,           -1 },
+  { "Nitrogen",                   NULL,                         NULL,                           0,            1,            1,           -1 },
+  { "Steam",                      NULL,                         NULL,                           0,            0,            1,           -1 },
+  { "Feh",                        NULL,                         NULL,                           0,            0,            1,           -1 },
+  { "Libreoffice",                NULL,                         NULL,                           0,            0,            1,           -1 },
+  { "Enpass",                     NULL,                         "Enpass Assistant",             0,            1,            1,           -1 },
+  { "mpv",                        NULL,                         NULL,                           0,            0,            1,           -1 },
+  { "Microsoft Teams - Preview",  "microsoft teams - preview",  "Microsoft Teams Notification", 0,            0,            1,           -1 },
+  { "Lxrandr",                    "lxrandr",                    "Display Settings",             0,            1,            1,           -1 },
 };
 
 /* layout(s) */
