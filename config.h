@@ -3,8 +3,10 @@
 
 /* appearance */
 static const char *fonts[] = {
-  "caneleb:size=9",
+  "canele:size=9",
   "Waffle:size=12",
+  "rissole:size=9",
+  "sundae:size=9",
 };
 static const unsigned int borderpx    = 1;        /* border pixel of windows */
 static const unsigned int snap        = 32;       /* snap pixel */
@@ -14,7 +16,7 @@ static const unsigned int taglinepx   = 1;        /* height of tag underline */
 static const unsigned int gappx       = 0;        /* gaps between windows */
 static const Bool showtitle           = True;     /* True means Show title in status bar */
 static const Bool gaponeclient        = False;    /* Enable gap with one window only */
-static const char dmenufont[]         = "caneleb:size=9";
+static const char dmenufont[]         = "canele:size=9";
 static const char normbgcolor[]       = "#292D3E";
 static const char normfgcolor[]       = "#D0D0D0";
 static const char selbgcolor[]        = "#82AAFF";
@@ -104,10 +106,11 @@ static const char *brup[]         = { "xbacklight", "-inc", "5", NULL };
 static const char *brdown[]       = { "xbacklight", "-dec", "5", NULL };
 static const char *scrlock[]      = { "sfplock", NULL };
 static const char *screenshot[]   = { "/bin/sh", "-c", "maim -s ~/Pictures/$(date +%s).png", NULL };
-static const char *extleft[]      = { "/bin/sh", "-c", "xrandr --output $(xrandr --listmonitors | grep -v '\\*' | grep -Po '[A-Z]+\\d' | head -1) --auto --left-of LVDS1 --output LVDS1 --auto && nitrogen --restore", NULL };
-static const char *extright[]     = { "/bin/sh", "-c", "xrandr --output $(xrandr --listmonitors | grep -v '\\*' | grep -Po '[A-Z]+\\d' | head -1) --auto --right-of LVDS1 --output LVDS1 --auto && nitrogen --restore", NULL };
-static const char *extabove[]     = { "/bin/sh", "-c", "xrandr --output $(xrandr --listmonitors | grep -v '\\*' | grep -Po '[A-Z]+\\d' | head -1) --auto --above LVDS1 --output LVDS1 --auto", NULL };
-static const char *onedisp[]      = { "/bin/sh", "-c", "xrandr --output $(xrandr --listmonitors | grep -v '\\*' | grep -Po '[A-Z]+\\d' | head -1) --off --output LVDS1 --auto && nitrogen --restore", NULL };
+static const char *extleft[]      = { "/bin/sh", "-c", "xrandr --output DP1 --auto --left-of LVDS1 --output LVDS1 --auto && nitrogen --restore", NULL };
+static const char *extright[]     = { "/bin/sh", "-c", "xrandr --output DP1 --auto --right-of LVDS1 --output LVDS1 --auto && nitrogen --restore", NULL };
+static const char *extabove[]     = { "/bin/sh", "-c", "xrandr --output DP1 --auto --above LVDS1 --output LVDS1 --auto", NULL };
+static const char *onedisp[]      = { "/bin/sh", "-c", "xrandr --output DP1 --off --output LVDS1 --auto && nitrogen --restore", NULL };
+static const char *homeoffice[]   = { "/bin/sh", "-c", "xrandr --output DP1 --auto && xrandr --output LVDS1 --off && nitrogen --restore", NULL };
 static const char *togglemusic[]  = { "/bin/sh", "-c", "mpc toggle; pkill -f sleep", NULL };
 static const char *stopmusic[]    = { "/bin/sh", "-c", "mpc stop; pkill -f sleep", NULL };
 static const char *nextsong[]     = { "/bin/sh", "-c", "mpc next; pkill -f sleep", NULL };
@@ -147,6 +150,7 @@ static Key keys[] = {
   { WINDOWSKEY,                   XK_Up,       spawn,        {.v = extabove     }   },
   { WINDOWSKEY,                   XK_Down,     spawn,        {.v = onedisp      }   },
   { WINDOWSKEY,                   XK_l,        spawn,        {.v = chlang       }   },
+  { 0,                            0x1008ff5d,  spawn,        {.v = homeoffice   }   },
   { MODKEY|ShiftMask,             XK_t,        togglebar,    {0                 }   },
   { MODKEY,                       XK_j,        focusstack,   {.i = +1           }   },
   { MODKEY,                       XK_k,        focusstack,   {.i = -1           }   },
