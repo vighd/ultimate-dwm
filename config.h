@@ -33,7 +33,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5" };
+static const char *tags[] = { "1", "2", "3", "4", "5", "6" };
 
 static const Rule rules[] = {
   /* xprop(1):
@@ -50,6 +50,7 @@ static const Rule rules[] = {
   { "mpv",                        NULL,                         NULL,                           0,            0,            1,           -1 },
   { "Microsoft Teams - Preview",  "microsoft teams - preview",  "Microsoft Teams Notification", 0,            0,            1,           -1 },
   { "Lxrandr",                    "lxrandr",                    "Display Settings",             0,            1,            1,           -1 },
+  { "PacketTracer7",              "PacketTracer7",              "PacketTracer7",                0,            0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -87,10 +88,10 @@ static const char *webb[]         = { "chromium", NULL };
 static const char *termcmd[]      = { "termite", NULL };
 static const char *file[]         = { "termite", "-e", "vifmrun", NULL };
 static const char *alsamixer[]    = { "termite", "-e", "alsamixer -c 0", NULL };
-static const char *upvol[]        = { "/bin/sh", "-c", "amixer set Master 3%+; pkill -f sleep", NULL };
-static const char *downvol[]      = { "/bin/sh", "-c", "amixer set Master 3%-; pkill -f sleep", NULL };
-static const char *mutevol[]      = { "/bin/sh", "-c", "amixer set Master toggle; pkill -f sleep", NULL };
-static const char *mutemic[]      = { "/bin/sh", "-c", "amixer set Capture toggle; pkill -f sleep", NULL };
+static const char *upvol[]        = { "/bin/sh", "-c", "amixer set Master 3%+; /usr/local/bin/dwm-statusbar kill", NULL };
+static const char *downvol[]      = { "/bin/sh", "-c", "amixer set Master 3%-; /usr/local/bin/dwm-statusbar kill", NULL };
+static const char *mutevol[]      = { "/bin/sh", "-c", "amixer set Master toggle; /usr/local/bin/dwm-statusbar kill", NULL };
+static const char *mutemic[]      = { "/bin/sh", "-c", "amixer set Capture toggle; /usr/local/bin/dwm-statusbar kill", NULL };
 static const char *brup[]         = { "xbacklight", "-inc", "5", NULL };
 static const char *brdown[]       = { "xbacklight", "-dec", "5", NULL };
 static const char *scrlock[]      = { "sfplock", NULL };
@@ -100,14 +101,14 @@ static const char *extright[]     = { "/bin/sh", "-c", "xrandr --output HDMI1 --
 static const char *extabove[]     = { "/bin/sh", "-c", "xrandr --output HDMI1 --auto --above LVDS1 --output LVDS1 --auto", NULL };
 static const char *onedisp[]      = { "/bin/sh", "-c", "xrandr --output HDMI1 --off --output LVDS1 --auto && nitrogen --restore", NULL };
 static const char *homeoffice[]   = { "/bin/sh", "-c", "xrandr --output HDMI1 --auto && xrandr --output LVDS1 --off && nitrogen --restore", NULL };
-static const char *togglemusic[]  = { "/bin/sh", "-c", "mpc toggle; pkill -f sleep", NULL };
-static const char *stopmusic[]    = { "/bin/sh", "-c", "mpc stop; pkill -f sleep", NULL };
-static const char *nextsong[]     = { "/bin/sh", "-c", "mpc next; pkill -f sleep", NULL };
-static const char *prevsong[]     = { "/bin/sh", "-c", "mpc prev; pkill -f sleep", NULL };
+static const char *togglemusic[]  = { "/bin/sh", "-c", "mpc toggle; /usr/local/bin/dwm-statusbar kill", NULL };
+static const char *stopmusic[]    = { "/bin/sh", "-c", "mpc stop; /usr/local/bin/dwm-statusbar kill", NULL };
+static const char *nextsong[]     = { "/bin/sh", "-c", "mpc next; /usr/local/bin/dwm-statusbar kill", NULL };
+static const char *prevsong[]     = { "/bin/sh", "-c", "mpc prev; /usr/local/bin/dwm-statusbar kill", NULL };
 static const char *ncmpcpp[]      = { "termite", "-e", "spotifycli", NULL };
 static const char *enpass[]       = { "/opt/enpass/Enpass", "showassistant", NULL };
-static const char *refbar[]       = { "/bin/sh", "-c", "pkill -f sleep", NULL };
-static const char *chlang[]       = { "/bin/sh", "-c", "(setxkbmap -query | grep -q 'layout:     hu' && setxkbmap en_US || setxkbmap hu); pkill -f sleep", NULL };
+static const char *refbar[]       = { "/bin/sh", "-c", "/usr/local/bin/dwm-statusbar kill", NULL };
+static const char *chlang[]       = { "/bin/sh", "-c", "(setxkbmap -query | grep -q 'layout:     hu' && setxkbmap en_US || setxkbmap hu); /usr/local/bin/dwm-statusbar kill", NULL };
 
 static Key keys[] = {
   /* modifier                     key          function      argument */
@@ -162,11 +163,12 @@ static Key keys[] = {
   { MODKEY|ShiftMask,             XK_period,   tagmon,       {.i  = +1          }   },
   { MODKEY|ShiftMask,             XK_q,        quit,         {0                 }   },
   { MODKEY|ControlMask|ShiftMask, XK_q,        quit,         {1                 }   },
-  TAGKEYS(                     XK_1,                                             0)
-  TAGKEYS(                     XK_2,                                             1)
-  TAGKEYS(                     XK_3,                                             2)
-  TAGKEYS(                     XK_4,                                             3)
-  TAGKEYS(                     XK_5,                                             4)
+  TAGKEYS(                        XK_1,                      0                      )
+  TAGKEYS(                        XK_2,                      1                      )
+  TAGKEYS(                        XK_3,                      2                      )
+  TAGKEYS(                        XK_4,                      3                      )
+  TAGKEYS(                        XK_5,                      4                      )
+  TAGKEYS(                        XK_6,                      5                      )
 };
 
 /* button definitions */
