@@ -50,7 +50,7 @@ static const Rule rules[] = {
   { "mpv",                        NULL,                         NULL,                           0,            0,            1,           -1 },
   { "Microsoft Teams - Preview",  "microsoft teams - preview",  "Microsoft Teams Notification", 0,            0,            1,           -1 },
   { "Lxrandr",                    "lxrandr",                    "Display Settings",             0,            1,            1,           -1 },
-  { "PacketTracer7",              "PacketTracer7",              "PacketTracer7",                0,            0,            1,           -1 },
+  { "wow.exe",                    "wow.exe",                    "World of Warcraft",            0,            0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -86,21 +86,17 @@ static const char *btmenu[]       = { "btmenu", "::", "-m", dmenumon, "-fn", dme
 static const char *calccmd[]      = { "=", "--", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *webb[]         = { "chromium", NULL };
 static const char *termcmd[]      = { "termite", NULL };
-static const char *file[]         = { "termite", "-e", "vifmrun", NULL };
+static const char *file[]         = { "termite", "-e", "vifm", NULL };
 static const char *alsamixer[]    = { "termite", "-e", "alsamixer -c 0", NULL };
 static const char *upvol[]        = { "/bin/sh", "-c", "amixer set Master 3%+; /usr/local/bin/dwm-statusbar kill", NULL };
 static const char *downvol[]      = { "/bin/sh", "-c", "amixer set Master 3%-; /usr/local/bin/dwm-statusbar kill", NULL };
-static const char *mutevol[]      = { "/bin/sh", "-c", "amixer set Master toggle; /usr/local/bin/dwm-statusbar kill", NULL };
+static const char *mutevol[]      = { "/bin/sh", "-c", "pactl set-sink-mute 0 toggle; amixer set Master toggle; /usr/local/bin/dwm-statusbar kill", NULL };
 static const char *mutemic[]      = { "/bin/sh", "-c", "amixer set Capture toggle; /usr/local/bin/dwm-statusbar kill", NULL };
 static const char *brup[]         = { "xbacklight", "-inc", "5", NULL };
 static const char *brdown[]       = { "xbacklight", "-dec", "5", NULL };
 static const char *scrlock[]      = { "sfplock", NULL };
 static const char *screenshot[]   = { "/bin/sh", "-c", "maim -s ~/Pictures/$(date +%s).png", NULL };
-static const char *extleft[]      = { "/bin/sh", "-c", "xrandr --output HDMI1 --auto --left-of LVDS1 --output LVDS1 --auto && nitrogen --restore", NULL };
-static const char *extright[]     = { "/bin/sh", "-c", "xrandr --output HDMI1 --auto --right-of LVDS1 --output LVDS1 --auto && nitrogen --restore", NULL };
-static const char *extabove[]     = { "/bin/sh", "-c", "xrandr --output HDMI1 --auto --above LVDS1 --output LVDS1 --auto", NULL };
-static const char *onedisp[]      = { "/bin/sh", "-c", "xrandr --output HDMI1 --off --output LVDS1 --auto && nitrogen --restore", NULL };
-static const char *homeoffice[]   = { "/bin/sh", "-c", "xrandr --output HDMI1 --auto && xrandr --output LVDS1 --off && nitrogen --restore", NULL };
+static const char *extend[]       = { "/bin/sh", "-c", "xlayoutdisplay -d 96 && nitrogen --restore", NULL };
 static const char *togglemusic[]  = { "/bin/sh", "-c", "mpc toggle; /usr/local/bin/dwm-statusbar kill", NULL };
 static const char *stopmusic[]    = { "/bin/sh", "-c", "mpc stop; /usr/local/bin/dwm-statusbar kill", NULL };
 static const char *nextsong[]     = { "/bin/sh", "-c", "mpc next; /usr/local/bin/dwm-statusbar kill", NULL };
@@ -135,12 +131,8 @@ static Key keys[] = {
   { 0,                            0x1008ff15,  spawn,        {.v = stopmusic    }   },
   { 0,                            0x1008ff17,  spawn,        {.v = nextsong     }   },
   { 0,                            0x1008ff16,  spawn,        {.v = prevsong     }   },
-  { WINDOWSKEY,                   XK_Left,     spawn,        {.v = extleft      }   },
-  { WINDOWSKEY,                   XK_Right,    spawn,        {.v = extright     }   },
-  { WINDOWSKEY,                   XK_Up,       spawn,        {.v = extabove     }   },
-  { WINDOWSKEY,                   XK_Down,     spawn,        {.v = onedisp      }   },
+  { WINDOWSKEY,                   XK_p,        spawn,        {.v = extend       }   },
   { WINDOWSKEY,                   XK_l,        spawn,        {.v = chlang       }   },
-  { 0,                            0x1008ff5d,  spawn,        {.v = homeoffice   }   },
   { MODKEY|ShiftMask,             XK_t,        togglebar,    {0                 }   },
   { MODKEY,                       XK_j,        focusstack,   {.i = +1           }   },
   { MODKEY,                       XK_k,        focusstack,   {.i = -1           }   },
