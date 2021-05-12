@@ -1857,6 +1857,7 @@ spawn(const Arg *arg)
     perror(" failed");
     exit(EXIT_SUCCESS);
   }
+  system("/usr/local/bin/dwm-statusbar kill");
 }
 
   void
