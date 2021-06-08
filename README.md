@@ -35,9 +35,9 @@ Userspace tools (dependencies) what I using with this environment:
 - maim
 - xlayoutdisplay
 - mpc
-- [dwm-statusbar](https://github.com/vighd/environment-scripts/blob/master/dwm-statusbar)
+- [dwm-statusbar](https://github.com/vighd/dotfiles/blob/master/configs/usr/local/bin/dwm-statusbar)
 
-You can find my configs and fonts for the userspace tools: https://github.com/vighd/dotfiles/tree/development/configs/home/vighd
+You can find my configs and fonts for the userspace tools: https://github.com/vighd/dotfiles/tree/master/configs/home/vighd
 
 ## And some screenshot
 
