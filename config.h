@@ -16,6 +16,7 @@ static const unsigned int taglinepx   = 1;        /* height of tag underline */
 static const unsigned int gappx       = 0;        /* gaps between windows */
 static const Bool showtitle           = True;     /* True means Show title in status bar */
 static const Bool gaponeclient        = False;    /* Enable gap with one window only */
+static const int lockfullscreen       = 1;        /* 1 will force focus on the fullscreen window */
 static const char dmenufont[]         = "canele:size=9";
 static const char normbgcolor[]       = "#292D3E";
 static const char normfgcolor[]       = "#D0D0D0";

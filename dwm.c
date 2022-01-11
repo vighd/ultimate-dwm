@@ -852,6 +852,9 @@ drawbar(Monitor *m)
   unsigned int i, occ = 0, urg = 0;
   Client *c;
 
+  if (!m->showbar)
+		return;
+
   /* draw status first so it can be overdrawn by tags later */
   if (m == selmon || 1) { /* status is only drawn on selected monitor */
     sw = m->ww - drawstatusbar(m, bh, stext);
@@ -985,7 +988,7 @@ focusstack(const Arg *arg)
 {
   Client *c = NULL, *i;
 
-  if (!selmon->sel)
+  if (!selmon->sel || (selmon->sel->isfullscreen && lockfullscreen))
     return;
   if (arg->i > 0) {
     for (c = selmon->sel->next; c && !ISVISIBLE(c); c = c->next);
@@ -1550,9 +1553,9 @@ restack(Monitor *m)
   }
   XSync(dpy, False);
   while (XCheckMaskEvent(dpy, EnterWindowMask, &ev)) {};
-	if (m == selmon && (m->tagset[m->seltags] & m->sel->tags) && selmon->lt[selmon->sellt] != &layouts[2]) {
-		warp(m->sel);
-	}
+  if (m == selmon && (m->tagset[m->seltags] & m->sel->tags) && selmon->lt[selmon->sellt] != &layouts[2]) {
+    warp(m->sel);
+  }
 }
 
   void
@@ -1832,15 +1835,15 @@ sigchld(int unused)
   void
 sighup(int unused)
 {
-	Arg a = {.i = 1};
-	quit(&a);
+  Arg a = {.i = 1};
+  quit(&a);
 }
 
   void
 sigterm(int unused)
 {
-	Arg a = {.i = 0};
-	quit(&a);
+  Arg a = {.i = 0};
+  quit(&a);
 }
 
   void
