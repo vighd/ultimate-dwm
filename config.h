@@ -18,19 +18,19 @@ static const Bool showtitle           = True;     /* True means Show title in st
 static const Bool gaponeclient        = False;    /* Enable gap with one window only */
 static const int lockfullscreen       = 1;        /* 1 will force focus on the fullscreen window */
 static const char dmenufont[]         = "canele:size=9";
-static const char normbgcolor[]       = "#292D3E";
-static const char normfgcolor[]       = "#D0D0D0";
-static const char selbgcolor[]        = "#82AAFF";
-static const char selfgcolor[]        = "#292D3E";
+static const char normbgcolor[]       = "#2E3440";
+static const char normfgcolor[]       = "#D8DEE9";
+static const char selbgcolor[]        = "#5E81AC";
+static const char selfgcolor[]        = "#2E3440";
 static const char *colors[][3]      = {
   /*                          fg         bg         border   */
-  [SchemeNorm]        = { "#D0D0D0",   "#292D3E",   "#3E4452"   },
-  [SchemeSel]         = { "#D0D0D0",   "#32424A",   "#425B80"   },
-  [SchemeTitle]       = { "#C792EA",   "#292D3E",   "#292D3E"   },
-  [SchemeUrgent]      = { "#F07178",   "#292D3E",   "#292D3E"   },
-  [SchemeOccupied]    = { "#D0D0D0",   "#292D3E",   "#425B80"   },
-  [SchemeLayout]      = { "#F07178",   "#292D3E",   "#292D3E"   },
-  [SchemeTagLine]     = { "#292D3E",   "#292D3E",   "#C792EA"   },
+  [SchemeNorm]        = { "#D8DEE9",   "#2E3440",   "#3E4452"   },
+  [SchemeSel]         = { "#D8DEE9",   "#32424A",   "#425B80"   },
+  [SchemeTitle]       = { "#5E81AC",   "#2E3440",   "#2E3440"   },
+  [SchemeUrgent]      = { "#BF616A",   "#2E3440",   "#2E3440"   },
+  [SchemeOccupied]    = { "#D8DEE9",   "#2E3440",   "#425B80"   },
+  [SchemeLayout]      = { "#BF616A",   "#2E3440",   "#2E3440"   },
+  [SchemeTagLine]     = { "#2E3440",   "#2E3440",   "#5E81AC"   },
 };
 
 /* tagging */
@@ -113,6 +113,7 @@ static Key keys[] = {
   { WINDOWSKEY,                   XK_g,           spawn,        SHCMD("grep performance /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor > /dev/null && sudo tlp bat || sudo tlp ac")},
   { WINDOWSKEY,                   XK_l,           spawn,        SHCMD("(setxkbmap -query | grep -q 'layout:     hu' && setxkbmap en_US || setxkbmap hu)")                                 },
   { MODKEY,                       XK_Shift_L,     spawn,        SHCMD("dwm-statusbar kill")                                                                                               },
+  { 0,                            XK_Pause,       spawn,        SHCMD("limit")                                                                                                            },
   { MODKEY,                       XK_g,           togglefullscr,{0                    }                                                                                                   },
   { MODKEY|ShiftMask,             XK_t,           togglebar,    {0                    }                                                                                                   },
   { MODKEY,                       XK_j,           focusstack,   {.i = +1              }                                                                                                   },
