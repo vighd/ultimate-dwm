@@ -2,39 +2,43 @@
 #include "fibonacci.c"
 
 /* appearance */
-static const char *fonts[] = {
-  "canele:size=9",
-  "Waffle:size=12",
-  "rissole:size=9",
-  "sundae:size=9",
-};
+static const char *fonts[] = {"UbuntuMono Nerd Font:size=10:antialias=true"};
 static const unsigned int borderpx    = 1;        /* border pixel of windows */
 static const unsigned int snap        = 32;       /* snap pixel */
 static const int showbar              = 1;        /* 0 means no bar */
 static const int topbar               = 1;        /* 0 means bottom bar */
-static const unsigned int taglinepx   = 1;        /* height of tag underline */
+static const unsigned int taglinepx   = 2;        /* height of tag underline */
 static const unsigned int gappx       = 0;        /* gaps between windows */
 static const Bool showtitle           = True;     /* True means Show title in status bar */
 static const Bool gaponeclient        = False;    /* Enable gap with one window only */
 static const int lockfullscreen       = 1;        /* 1 will force focus on the fullscreen window */
-static const char dmenufont[]         = "canele:size=9";
-static const char normbgcolor[]       = "#292D3E";
-static const char normfgcolor[]       = "#D0D0D0";
-static const char selbgcolor[]        = "#82AAFF";
-static const char selfgcolor[]        = "#292D3E";
+static const char dmenufont[]         = "UbuntuMonoNerdFont:size=10:antialias=true";
+static const char normbgcolor[]       = "#242b38";
+static const char normfgcolor[]       = "#666e83";
+static const char selbgcolor[]        = "#4fa6ed";
+static const char selfgcolor[]        = "#242b38";
 static const char *colors[][3]      = {
   /*                          fg         bg         border   */
-  [SchemeNorm]        = { "#D0D0D0",   "#292D3E",   "#3E4452"   },
-  [SchemeSel]         = { "#D0D0D0",   "#32424A",   "#425B80"   },
-  [SchemeTitle]       = { "#C792EA",   "#292D3E",   "#292D3E"   },
-  [SchemeUrgent]      = { "#F07178",   "#292D3E",   "#292D3E"   },
-  [SchemeOccupied]    = { "#D0D0D0",   "#292D3E",   "#425B80"   },
-  [SchemeLayout]      = { "#F07178",   "#292D3E",   "#292D3E"   },
-  [SchemeTagLine]     = { "#292D3E",   "#292D3E",   "#C792EA"   },
+  [SchemeNorm]        = { "#666e83",   "#242b38",   "#425B80"   },
+  [SchemeSel]         = { "#242b38",   "#4fa6ed",   "#425B80"   },
+  [SchemeTitle]       = { "#bf68d9",   "#242b38",   "#242b38"   },
+  [SchemeUrgent]      = { "#e55561",   "#242b38",   "#242b38"   },
+  [SchemeOccupied]    = { "#666e83",   "#242b38",   "#425B80"   },
+  [SchemeLayout]      = { "#e2b86b",   "#242b38",   "#242b38"   },
+  [SchemeTagLine]     = { "#bf68d9",   "#242b38",   "#bf68d9"   },
+};
+
+static const char *tagsel[][2] = {
+  { "#48b0bd", "#242b38" },
+  { "#4fa6ed", "#242b38" },
+  { "#8ebd6b", "#242b38" },
+  { "#e2b86b", "#242b38" },
+  { "#bf68d9", "#242b38" },
+  { "#e55561", "#242b38" },
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6" };
+static const char *tags[] = { "", "", "", "", "", "" };
 
 static const Rule rules[] = {
   /* xprop(1):
@@ -61,10 +65,10 @@ static const int resizehints = 1;    /* 1 means respect size hints in tiled resi
 
 static const Layout layouts[] = {
   /* symbol     arrange function */
-  { "",        spiral      },    /* first entry is default */
-  { "",        tile        },    
-  { "",        NULL        },    /* no layout function means floating behavior */
-  { "",        monocle     },
+  { "",        spiral      },    /* first entry is default */
+  { "",        tile        },    
+  { "",        NULL        },    /* no layout function means floating behavior */
+  { "",        monocle     },
 };
 
 /* key definitions */
@@ -109,7 +113,8 @@ static Key keys[] = {
   { 0,                            0x1008ff17,     spawn,        SHCMD("mocp --next")                                                                                                      },
   { 0,                            0x1008ff16,     spawn,        SHCMD("mocp --previous")                                                                                                  },
   { MODKEY|ShiftMask,             XK_m,           spawn,        SHCMD("alacritty -e mocp && mocp -x")                                                                                     },
-  { WINDOWSKEY,                   XK_p,           spawn,        SHCMD("xlayoutdisplay -d 96 && nitrogen --restore")                                                                       },
+  { WINDOWSKEY,                   XK_p,           spawn,        SHCMD("xlayoutdisplay -p HDMI2 -d 96 && nitrogen --restore")                                                              },
+  { WINDOWSKEY,                   XK_Left,        spawn,        SHCMD("/home/vighd/.screenlayout/Home.sh && nitrogen --restore")                                                          },
   { WINDOWSKEY,                   XK_g,           spawn,        SHCMD("grep performance /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor > /dev/null && sudo tlp bat || sudo tlp ac")},
   { WINDOWSKEY,                   XK_l,           spawn,        SHCMD("(setxkbmap -query | grep -q 'layout:     hu' && setxkbmap en_US || setxkbmap hu)")                                 },
   { MODKEY,                       XK_Shift_L,     spawn,        SHCMD("dwm-statusbar kill")                                                                                               },
