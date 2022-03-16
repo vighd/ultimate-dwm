@@ -2,7 +2,7 @@
 #include "fibonacci.c"
 
 /* appearance */
-static const char *fonts[] = {"UbuntuMono Nerd Font:size=10:antialias=true"};
+static const char *fonts[] = {"UbuntuMonoNerdFont:size=10:antialias=true"};
 static const unsigned int borderpx    = 1;        /* border pixel of windows */
 static const unsigned int snap        = 32;       /* snap pixel */
 static const int showbar              = 1;        /* 0 means no bar */
@@ -14,7 +14,7 @@ static const Bool gaponeclient        = False;    /* Enable gap with one window 
 static const int lockfullscreen       = 1;        /* 1 will force focus on the fullscreen window */
 static const char dmenufont[]         = "UbuntuMonoNerdFont:size=10:antialias=true";
 static const char normbgcolor[]       = "#242b38";
-static const char normfgcolor[]       = "#666e83";
+static const char normfgcolor[]       = "#ABB2BF";
 static const char selbgcolor[]        = "#4fa6ed";
 static const char selfgcolor[]        = "#242b38";
 static const char *colors[][3]      = {
