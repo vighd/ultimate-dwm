@@ -56,6 +56,7 @@ static const Rule rules[] = {
   { "Microsoft Teams - Preview",  "microsoft teams - preview",  "Microsoft Teams Notification", 0,            0,            1,           -1 },
   { "Lxrandr",                    "lxrandr",                    "Display Settings",             0,            1,            1,           -1 },
   { "wow.exe",                    "wow.exe",                    "World of Warcraft",            0,            0,            1,           -1 },
+  { "Pinentry-gtk-2",             "pinentry-gtk-2",             NULL,                           0,            0,            1,           -1 },
 };
 
 /* layout(s) */
