@@ -85,13 +85,12 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[]       = { "dmenu_run",    "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
-static const char *passmenucmd[]    = { "passm",        "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
-static const char *passmenuotpcmd[] = { "passm", "otp", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
-static const char *btmenu[]         = { "btmenu", "::", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
+static const char *dmenucmd[]       = { "dmenu_run",    "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
+static const char *passmenucmd[]    = { "passm",        "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
+static const char *passmenuotpcmd[] = { "passm", "otp", "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
+static const char *btmenu[]         = { "btmenu", "::", "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 
-static Key keys[] = {
+static const Key keys[] = {
   /* modifier                     key             function      argument */
   { MODKEY,                       XK_p,           spawn,        {.v = dmenucmd        }                                                                                                   },
   { MODKEY|ShiftMask,             XK_b,           spawn,        {.v = btmenu          }                                                                                                   },
@@ -152,7 +151,7 @@ static Key keys[] = {
 
 /* button definitions */
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
-static Button buttons[] = {
+static const Button buttons[] = {
   /* click                event mask      button          function        argument */
   { ClkClientWin,         MODKEY,         Button1,        movemouse,      {0}    },
   { ClkClientWin,         MODKEY,         Button2,        togglefloating, {0}    },
